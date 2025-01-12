@@ -122,6 +122,7 @@
     "module": "ESNext",
     "target": "ESNext",
     "moduleResolution": "Node",
+    "skipLibCheck": true,
 
     "strict": true,
     "sourceMap": true,
