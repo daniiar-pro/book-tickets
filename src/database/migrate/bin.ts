@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import 'dotenv/config'
 import * as path from 'node:path'
 import * as fs from 'node:fs/promises'
@@ -26,19 +27,19 @@ async function migrateDefault(url: string) {
   const { results, error } = await migrateToLatest(nodeProvider, db)
 
   if (!results?.length) {
-    console.log('No migrations to run')
+    console.log('No migrations to run.')
   }
 
   results?.forEach((it) => {
     if (it.status === 'Success') {
-      console.log(`Migration "${it.migrationName} was executed successfully`)
+      console.log(`Migration "${it.migrationName}" was executed successfully.`)
     } else if (it.status === 'Error') {
-      console.error(`Failed to execute migration "${it.migrationName}`)
+      console.error(`Failed to execute migration "${it.migrationName}".`)
     }
   })
 
   if (error) {
-    console.error('Failed to migrate')
+    console.error('Failed to migrate.')
     console.error(error)
     process.exit(1)
   }
@@ -54,7 +55,7 @@ if (isRunDirectly) {
   const { DATABASE_URL } = process.env
 
   if (typeof DATABASE_URL !== 'string') {
-    throw new Error('Provide DATABASE_URL in your environment variables')
+    throw new Error('Provide DATABASE_URL in your environment variables.')
   }
 
   migrateDefault(DATABASE_URL)
